@@ -23,10 +23,6 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use((req, res, next) => {
-    res.render('maintance');
-})
-
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear()
 });
@@ -43,6 +39,13 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/projects', (req, res) => {
+    // res.send('<h1>Hello express</h1>');
+    res.render('projects.hbs', {
+        pageTitle: 'Projects'
+    });
+});
+
 app.get('/about', (req, res) => {
     res.render('about.hbs', {
         pageTitle: 'About'
@@ -55,6 +58,10 @@ app.get('/bad', (req, res) => {
         errorMessage: 'Error'
     })
 })
+
+// app.use((req, res, next) => {
+//     res.render('maintance');
+// })
 
 app.listen(port, () => {
     console.log(`Server is listening at port ${port}`);
